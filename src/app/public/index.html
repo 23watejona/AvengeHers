@@ -1,31 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
-    <title>AvengeHers</title>
-    <meta charset="utf-8">
-    <title>Sider Menu Bar CSS</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
+        }
+    </style>
 </head>
 <body>
-<input type="checkbox" id="check">
-<label for="check">
-    <i class="fas fa-bars" id="btn"></i>
-    <i class="fas fa-times" id="cancel"></i>
-</label>
-<div class="sidebar">
-    <li><Header href="#"><i class="fas fa-user-secret"></i> AvengeHers</Header></li>
-    <ul id ="buttons">
-        <li><a href="about.html" target = "_blank"><i class="fas fa-question-circle"></i>About</a></li>
-        <li><a href="events.html" target = "_blank"><i class="fas fa-calendar-week"></i>Events</a></li>
-        <li><a href="walks.html" target = "_blank"><i class="fas fa-walking"></i>Walks</a></li>
-        <li><a href="profile.html" target = "_blank"><i class="fas fa-user-alt"></i>Profile</a></li>
-        <li><a href="logout.html" target = "_blank"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
-    </ul>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+    <li><a href="index.html" target = "_blank"><i class="fas fa-question-circle"></i>Home</a></li>
+    <li><a href="events.html" target = "_blank"><i class="fas fa-calendar-week"></i>Events</a></li>
+    <li><a href="walks.html" target = "_blank"><i class="fas fa-walking"></i>Walks</a></li>
+    <li><a href="profile.html" target = "_blank"><i class="fas fa-user-alt"></i>Profile</a></li>
+    <li><a href="logout.html" target = "_blank"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
 </div>
-<section></section>
-    <h1>About AvengeHers</h1><br>
-    <h1>Upcoming Events</h1>
-    <h4>Today</h4>
+
+<div id="main">
+    <button class="openbtn" onclick="openNav()">&equiv;</button>
+    <h1>AvengeHers</h1>
+    <h2>Mission Statement:</h2>
+    <p1>Our mission is to empower women by providing a safe and supportive platform where they can connect with trusted companions for nighttime walks. Through our innovative application, we strive to foster a community of solidarity, ensuring every woman feels secure and confident as she navigates the streets after dark.</p1>
+    <h2>How AvengeHers Works:</h2>
+    <p2>Our app lets women join or create walking events for nighttime safety. Users sign up, browse events, and join walks they're interested in. Each event has details such as the time, meeting point, and route. Safety features include real-time location sharing and emergency buttons. Join us to walk confidently with trusted companions!</p2>
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+    }
+</script>
+
 </body>
 </html>
