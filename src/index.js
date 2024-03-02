@@ -2,6 +2,8 @@ import express from 'express';
 import fs from 'fs';
 import {createPageHandler} from './createUser.js'
 import {loginPageHandler} from './login.js'
+import {logoutPageHandler} from './logout.js'
+import {groupPageHandler} from './groupHandler.js'
 
 const app = express();
 const port = 3000;
@@ -13,7 +15,9 @@ app.get('/', (req, res) => {
 })
 app.post('/create.html', createPageHandler);
 app.post('/login.html', loginPageHandler);
+app.post('/events.html', groupPageHandler);
+app.post('/logout.html', logoutPageHandler);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`AvengeHers app listening on port ${port}`)
 })
