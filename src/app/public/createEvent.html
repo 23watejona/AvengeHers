@@ -3,8 +3,13 @@
 <body>
 
 <h1>Add Your Event</h1>
-
-<form action="/action_page.php">
+<input type="text" id="myInput" />
+<script>
+const input = document.getElementById("myInput");
+const inputValue = input.value;
+console.log(inputValue);
+</script>
+<!--<form action="/action_page.php">
     <label for="img">Event Image:</label>
     <input type="file" id="img" name="img"/><br><br>
     <label for="name">Event Name:</label>
@@ -21,5 +26,12 @@
     <input type="submit" value="Add Your Event">
 </form>
 
+<script>
+    function createEvent() {
+        let evnImg = document.getElementById("img").value;
+        let evnName = document.getElementById("name").value;
+        document.getElementById("evnName").event.html = "<b>"+evnName+"<\/b>";
+    }
+</script>-->
 </body>
 </html>
