@@ -15,11 +15,6 @@ function createUser(email, hashedPassword) {
 	manageLogins.addLogin(email, hashedPassword, uid);
 }
 
-
-
-export function createPageServe(req, res) {
-	res.end(fs.readFileSync('src/app/create.html'))
-}
 export function createPageHandler(req, res) {
 	let data = '';
 	req.on('data', (d)=>{
