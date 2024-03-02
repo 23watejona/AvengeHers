@@ -1,4 +1,1 @@
-{
-	"users": []
-
-}
+{"users":[{"email":"asd@purdue.edu","hashedPassword":"688787d8ff144c502c7f5cffaafe2cc588d86079f9de88304c26b0cb99ce91c6","confirmedEmail":false,"authHash":0,"expiry":0,"userId":"mqIdbRwuEN4jH7Xl"},{"email":"bcd@purdue.edu","hashedPassword":"688787d8ff144c502c7f5cffaafe2cc588d86079f9de88304c26b0cb99ce91c6","confirmedEmail":false,"authHash":0,"expiry":0,"userId":"VxpUwZBkio1RhJyc"}]}

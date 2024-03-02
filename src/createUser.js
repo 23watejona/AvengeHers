@@ -1,29 +1,21 @@
 import fs from 'fs';
 import qs from 'querystring';
-import users from 'src/app/app-data/users.json';
-import { createHash } from 'crypto';
+import manageLogins from './manageLogins.js';
+import hash from './hash.js';
+import generateRandomString from './randomString.js';
 
 function createUser(email, hashedPassword) {
-
-	for(user of users.users) {
-		if(user.email == email) {
-			throw new Exception("");
-		}
+	let uid = generateRandomString(16);
+	if(manageLogins.getUserByEmail(email) != undefined) {
+		throw new Error("Email exists");
 	}
-	users.users.push(new );
+	while(manageLogins.getUserByEmail(email) != undefined) {
+		uid = generateRandomString(16);
+	}
+	manageLogins.addLogin(email, hashedPassword, uid);
 }
-function generateRandomString(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
-function hash(string) {
-  return createHash('sha256').update(string).digest('hex');
-}
+
 
 export function createPageServe(req, res) {
 	res.end(fs.readFileSync('src/app/create.html'))
@@ -34,8 +26,14 @@ export function createPageHandler(req, res) {
 		data += d.toString();
 	})
 	req.on('end', ()=>{
-		let data = qs.parse(data);
-		data.password = hash(password);
+		data = qs.parse(data);
+		data.password = hash(data.password);
+		try{
+			createUser(data.email, data.password);
+		} catch (e) {
+			res.end(e.message);
+			return;
+		}
 		res.end("Success");
 	})
 }
