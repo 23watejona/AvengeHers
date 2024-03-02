@@ -1,13 +1,4 @@
 {
-	"logins": [
-		{
-		  "email" : "",
-		  "name" : "",
-		  "hashedPassword" : "",
-		  "rating": 0,
-		  "numWalks": 0
-		}
-
-	]
+	"logins": []
 
 }
