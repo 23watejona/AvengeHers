@@ -5,7 +5,7 @@ import hash from './hash.js';
 import generateRandomString from './randomString.js';
 
 
-export function loginPageHandler(req, res) {
+export function logoutPageHandler(req, res) {
     let data = '';
     req.on('data', (d) => {
         data += d.toString();
