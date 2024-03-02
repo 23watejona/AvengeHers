@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/23watejona/AvengeHers/issues"
   },
-  "homepage": "https://github.com/23watejona/AvengeHers#readme"
+  "homepage": "https://github.com/23watejona/AvengeHers#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
 }
