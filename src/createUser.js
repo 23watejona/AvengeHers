@@ -1,8 +1,28 @@
 import fs from 'fs';
 import qs from 'querystring';
+import users from 'src/app/app-data/users.json';
+import { createHash } from 'crypto';
 
-function createUser() {
+function createUser(email, hashedPassword) {
 
+	for(user of users.users) {
+		if(user.email == email) {
+			throw new Exception("");
+		}
+	}
+	users.users.push(new );
+}
+function generateRandomString(length) {
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
+function hash(string) {
+  return createHash('sha256').update(string).digest('hex');
 }
 
 export function createPageServe(req, res) {
@@ -14,7 +34,8 @@ export function createPageHandler(req, res) {
 		data += d.toString();
 	})
 	req.on('end', ()=>{
-		console.log(qs.parse(data));
+		let data = qs.parse(data);
+		data.password = hash(password);
 		res.end("Success");
 	})
 }

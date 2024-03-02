@@ -16,21 +16,31 @@
 		<input type="submit">
 	</form>
 </body>
+<script type="text/javascript">
+	function hash(string) {
+  const utf8 = new TextEncoder().encode(string);
+  return crypto.subtle.digest('SHA-256', utf8).then((hashBuffer) => {
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((bytes) => bytes.toString(16).padStart(2, '0'))
+      .join('');
+    return hashHex;
+  });
+}
+</script>
 <script>
 	let form = document.getElementById("createUserForm");
 	form.onkeyup = dataVerify;
 	form.onchange = dataVerify;
 	form.onsubmit = dataSubmit;
+
 	let emailInput = document.getElementById('email');
 		let passwordInput = document.getElementById('password');
 		let passwordConfirmInput = document.getElementById('password-confirm');
 	function dataVerify() {
-		
-
 		let email = emailInput.value;
 		let password = passwordInput.value;
 		let passwordConfirm = passwordConfirmInput.value;
-		console.log(email)
 		if(password != passwordConfirm) {
 			passwordConfirmInput.checkValidity();
 			passwordConfirmInput.setCustomValidity("Passwords Don't Match");
@@ -45,16 +55,19 @@
 			emailInput.setCustomValidity("Must be a Purdue Email Address");
 			emailInput.reportValidity();
 		} else {
-			console.log("resetting");
 			emailInput.checkValidity();
 			emailInput.setCustomValidity('');
 			emailInput.reportValidity();
 		}
 		
 	}
-	dataSubmit() {
-					request = new XMLHttpRequest();
-
+	function dataSubmit() {
+		let formData = new FormData(form);
+		formData.delete("password-confirm");
+		let request = new XMLHttpRequest();
+		request.open('POST','create.html', false);
+		request.send(new URLSearchParams(new FormData(form)).toString())
+		request
 	}
 </script>
 </html>
