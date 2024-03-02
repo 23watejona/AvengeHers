@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sendMail = (to, subject, message) =>{
+	let now = Date.now() % 100000;
+	message = message.concat(now);
+
     const transporter = nodemailer.createTransport({
         host : 'smtp.gmail.com',
         port : 465,
@@ -28,4 +31,4 @@ const sendMail = (to, subject, message) =>{
 
 }
 
-sendMail('avengehers1@gmail.com', 'test', 'test2');
+sendMail('avengehers1@gmail.com', 'test', 'Code: ');
