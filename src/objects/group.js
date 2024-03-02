@@ -18,15 +18,10 @@ export default class group {
 	}
 
 	removeUser(userid) {
-		let index = users.indexOF(userid);
+		let index = users.indexOf(userid);
 		if (index != 1) {
 			users.splice(index, 1);
 		}
-	}
-
-	// Returns in epoch time
-	getStartTime() {
-		return this.startTime;
 	}
 
 	// Close walk, returns true if done, false if not done
@@ -39,12 +34,3 @@ export default class group {
 		return false;
 	}
 }
-
-function getDate() {
-	var now = moment();
-	var startTime = Date.parse(now);
-	var ms = Math.floor(new Date(now).getTime());
-	console.log(startTime);
-}
-
-getDate();
