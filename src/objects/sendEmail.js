@@ -24,10 +24,10 @@ const sendMail = (to, subject, message) =>{
         text: message,
     }
 
-    transporter.sendMail(options, (error, info) =>{
+    /*transporter.sendMail(options, (error, info) =>{
         if(error) console.log(error)
         else console.log(info)
-    })
+    })*/
 
 }
 

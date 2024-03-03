@@ -23,8 +23,8 @@ export function addToGroup(eventname, userid) {
 			if(g.users == undefined) {
 				g.users = [];
 			}
-			for(g of g.users) {
-				if(g.uid == userid) {
+			for(let h of g.users) {
+				if(h == userid) {
 					return false;
 				}
 			}
