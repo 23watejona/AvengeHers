@@ -64,7 +64,7 @@ export function logout(email, authHash) {
 
 export function checkAuth(email, authHash) {
 	for(let login of logins.users) {
-		if(login.email === email && authHash === login.authHash && login.expiry >  Math.floor(new Date().getTime() / 1000)) {
+		if(login.email === email && authHash == login.authHash && login.expiry >  Math.floor(new Date().getTime() / 1000)) {
 			return true;
 		}
 	}
