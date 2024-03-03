@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 
 <head>
@@ -63,4 +63,286 @@ function dataSubmit() {
 }
 </script>
 
+</html>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body {
+            height: 1080px;
+            background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
+        }
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #000000;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* Center the image and position the close button */
+
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .horizontal-center {
+            margin: 0;
+            position: absolute;
+            left: 46.42vw;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .horizontal-center-2 {
+            margin: 0;
+            position: absolute;
+            left: 47vw;
+            top: 20vh;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .horizontal-center-3 {
+            margin: 0;
+            position: absolute;
+            left: 43.85vw;
+            top: 29vh;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .vertical-down {
+            margin: 0;
+            position: absolute;
+            top: 68.5vh;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+        }
+
+        @keyframes animatezoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">AvengeHers Create a New Account</h2>
+<p1></p1></br>
+<!--<form action="javascript:void(0);" id="createUserForm">
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
+    <label for="password" >Password: </label>
+    <input type="password" name="password" id="password"> <br/>
+    <label for="password-confirm">Confirm Password: </label>
+    <input type="password" name="password-confirm" id="password-confirm"><br />
+    <input type="submit">
+</form>-->
+
+<div class="horizontal-center">
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-user-plus"></i> Sign-Up</button>
+</div>
+
+<div class="horizontal-center-2">
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-sign-in-alt"></i> Login</button>
+</div>
+
+<div class="horizontal-center-3">
+    <a href="index.html"></ahref><button ><i class="fas fa-home"></i> Return to Home Page</button></a>
+</div>
+
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="javascript:void(0);" id="loginForm">
+
+        <div class="container">
+            <label for="email"><b>Email: </b></label></br>
+            <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
+            <p1></p1></br>
+            <label for="password" ><b>Password:</b> </label>
+            <input type="password" name="password" id="password"><br/>
+            <label for="password-confirm"><b>Confirm Password:</b> </label>
+            <input type="password" name="password-confirm" id="password-confirm"><br/>
+            <input type="submit">
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<div class="vertical-down">
+    <img src="studentGroupWalking.jpg" alt="students walking together"class="center" width="1250">
+</div>
+</body>
+<script>
+    let form = document.getElementById("createUserForm");
+    form.onchange = dataVerify;
+    form.onsubmit = dataSubmit;
+
+    let emailInput = document.getElementById('email');
+    let passwordInput = document.getElementById('password');
+    let passwordConfirmInput = document.getElementById('password-confirm');
+
+    function dataVerify() {
+        let email = emailInput.value;
+        let password = passwordInput.value;
+        let passwordConfirm = passwordConfirmInput.value;
+        if (password != passwordConfirm) {
+            passwordInput.setCustomValidity("Passwords Don't Match");
+            passwordInput.reportValidity();
+        } else {
+            passwordInput.setCustomValidity('');
+            passwordInput.reportValidity();
+        }
+        if (!emailInput.checkValidity()) {
+            emailInput.setCustomValidity("Must be a Purdue Email Address");
+        } else {
+            emailInput.setCustomValidity('');
+        }
+
+    }
+
+    function dataSubmit() {
+        let formData = new FormData(form);
+        formData.delete("password-confirm");
+        let request = new XMLHttpRequest();
+        request.open('POST', 'create.html', false);
+        request.onload = () => {
+            if (request.readyState === request.DONE) {
+                if (request.status === 200) {
+                    console.log(request.response);
+                }
+            }
+        }
+        request.send(new URLSearchParams(new FormData(form)).toString())
+
+    }
+</script>
 </html>
