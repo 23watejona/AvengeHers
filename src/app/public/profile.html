@@ -86,11 +86,10 @@
 <div id="main">
     <button class="openbtn" onclick="openNav()">&equiv;</button>
     <h1>Profile</h1>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
+    
+    <h2 id="starRating">Rating: </h2>
+
+    <h3 id="walks">Walks: </h3>
 </div>
 
 <script>
@@ -103,8 +102,53 @@
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
     }
-
     
+    // Combine IDK IF IT WORKS
+
+    function loadStats(walkStats) {
+        let walks = walkStats.numWalks;
+        let rating = walkStats.rating;
+
+        var ratingLabel = document.getElementById("starRating");
+        ratingLabel.innerHTML = "Rating: " + rating;
+
+        for (let x = 0; x < Math.floor(rating); x++) {
+            document.getElementById('main').innerHTML += "<span class=fa fa-star checked>" + "</span>";
+        }
+        for (let x = Math.floor(rating); x < 5; x++) {
+            document.getElementById('main').innerHTML += "<span class=fa fa-star>" + "</span>";
+            document.getElem
+        }
+
+        var walkLabel = document.getElementById("walks");
+        walkLabel.innerHTML = "Walks: " + walks;
+    }
+
+    let stats;
+    window.onload = () => {
+        let decodedCookie = decodeURIComponent(document.cookie);
+        if (getCookie("logged-in") == "true") {
+            let formData = new FormData();
+            let request = new XMLHttpRequest();
+            if(getCookie("username") != undefined && getCookie("auth") != undefined)
+            formData.set("authCode", getCookie("auth"));
+            formData.set("email", getCookie("username"));
+            request.open('POST', 'events.html', false);
+            request.onload = () => {
+                if (request.readyState === request.DONE) {
+                    if (request.status === 200) {
+                       stats = JSON.parse(request.responseText);
+                       loadStats(stats);
+                       document.getElementById("logged-in").style.display = "block";
+                       document.getElementById("logged-out").style.display = "none";
+                    } else {
+                        document.cookie = "logged-in=false;";
+                    }
+                }
+            }
+            request.send(new URLSearchParams(formData).toString())
+        }
+    }
 </script>
 
 </body>
