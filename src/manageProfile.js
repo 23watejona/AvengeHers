@@ -1,5 +1,9 @@
-import manageLogins from 'manageLogins';
+import manageLogins from './manageLogins.js';
 
-export default function getStats(email) {
+export function getStats(email) {
 	return manageLogins.getUserByEmail(email);
+}
+
+export default {
+	getStats: getStats
 }

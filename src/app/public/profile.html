@@ -173,7 +173,7 @@
             if(getCookie("username") != undefined && getCookie("auth") != undefined)
             formData.set("authCode", getCookie("auth"));
             formData.set("email", getCookie("username"));
-            request.open('POST', 'auth', false);
+            request.open('POST', '/profile.html', false);
             request.onload = () => {
                 if (request.readyState === request.DONE) {
                     if (request.status === 200) {
