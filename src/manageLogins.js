@@ -50,10 +50,21 @@ export function reauth(email, authHash) {
 	}
 	return undefined;
 }
+export function logout(email, authHash) {
+	for(let login of logins.users) {
+		if(login.email === email && authHash === login.authHash) {
+			login.authHash = "";
+			login.expiry = 0; 
+			fs.writeFileSync('src/app/app-data/logins.json', JSON.stringify(logins));
+			return true;
+		}
+	}
+	return false;
+}
 
 export function checkAuth(email, authHash) {
 	for(let login of logins.users) {
-		if(login.email === email && authHash === login.authHash && login.expiry >  Math.floor(new Date().getTime() / 1000)) {
+		if(login.email === email && authHash == login.authHash && login.expiry >  Math.floor(new Date().getTime() / 1000)) {
 			return true;
 		}
 	}
@@ -73,5 +84,6 @@ export default {
 	getUserByEmail: getUserByEmail,
 	generateAuth: generateAuth,
 	reauth: reauth,
-	checkAuth: checkAuth
+	checkAuth: checkAuth,
+	logout: logout
 }
