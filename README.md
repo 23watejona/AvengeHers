@@ -13,7 +13,7 @@ run npm test
 
 in browser of choice, search http://localhost:3000
 
-## Or, if online is more your thing
+## Or, if online is more your thing...
 [Access the replit here](https://replit.com/@dhm0/AvengeHers?v=1#README.md)
 
 Note that in order for all functionality to work correctly, you must open it in an external tab (not the built-in replit webview tab)
