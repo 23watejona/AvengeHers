@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
+        body {
+            height: 1080px;
+            background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
+        }
+        body {
+            font-family: "Lato", sans-serif;
+        }
 
         /* Full-width input fields */
         input[type=text], input[type=password] {
@@ -20,13 +27,14 @@
 
         /* Set a style for all buttons */
         button {
-            background-color: #04AA6D;
+            background-color: #000000;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
             width: 100%;
+
         }
 
         button:hover {
@@ -41,11 +49,7 @@
         }
 
         /* Center the image and position the close button */
-        .imgcontainer {
-            text-align: center;
-            margin: 24px 0 12px 0;
-            position: relative;
-        }
+
 
         img.avatar {
             width: 40%;
@@ -54,6 +58,30 @@
 
         .container {
             padding: 16px;
+        }
+
+        .horizontal-center {
+            margin: 0;
+            position: absolute;
+            left: 47vw;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        .horizontal-center-2 {
+            margin: 0;
+            position: absolute;
+            left: 46.9vw;
+            top: 20vh;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .vertical-down {
+            margin: 0;
+            position: absolute;
+            top: 60vh;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
 
         span.psw {
@@ -126,29 +154,36 @@
                 width: 100%;
             }
         }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
     </style>
 </head>
 <body>
 
-<h2>Modal Login Form</h2>
+<h2 style="text-align: center;">AvengeHers Login</h2>
+<p1></p1></br>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+<div class="horizontal-center">
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-sign-in-alt"></i> Login</button>
+</div>
+
+<div class="horizontal-center-2">
+    <a href="index.html"></ahref><button ><i class="fas fa-home"></i> Home</button></a>
+</div>
 
 <div id="id01" class="modal">
 
     <form class="modal-content animate" action="javascript:void(0);" id="loginForm">
-        <!--<form class="modal-content animate" action="javascript:void(0);" id="loginForm">
-        <label for="email">Email: </label>
-        <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
-        <label for="password" >Password: </label>
-        <input type="password" name="password" id="password"><br />
-        <input type="submit">
-    </form>-->
 
         <div class="container">
-            <label for="email"><b></b>Email: </b></label>
+            <label for="email"><b>Email: </b></label></br>
             <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
-
+            <p1></p1></br>
             <label for="password" ><b>Password:</b> </label>
             <input type="password" name="password" id="password"><br/>
 
@@ -172,7 +207,9 @@
         }
     }
 </script>
-
+<div class="vertical-down">
+<img src="peopleWalkingNight.jpg" alt="people walking together"class="center" width="1250">
+</div>
 </body>
 <script>
     let form = document.getElementById("loginForm");
