@@ -1,6 +1,6 @@
 import group from './objects/group.js';
 import groups from './app/app-data/groups.json' assert { type: 'json' };
-import fs from 'fs'
+import fs from '@cyclic.sh/s3fs/promises'
 
 export function getGroups() {
 	return groups;
