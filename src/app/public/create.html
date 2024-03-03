@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -8,8 +9,12 @@
     <title></title>
     <style>
         body {
-            height: 1080px;
+            height: 100vh;
             background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
+            display: flex;
+            align-items: center;
+            justify-content: top;
+              flex-direction: column;
         }
         body {
             font-family: "Lato", sans-serif;
@@ -17,12 +22,7 @@
 
         /* Full-width input fields */
         input[type=text], input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
+            
         }
 
         /* Set a style for all buttons */
@@ -40,7 +40,14 @@
         button:hover {
             color: #CEB888;
         }
-
+        input[type=submit] {
+            border: none;
+            background-color: #2D8500;
+            color:white;
+        }
+        input[type=submit]:hover {
+            color: #CEB888;
+        }
         /* Extra styles for the cancel button */
         .cancelbtn {
             width: auto;
@@ -58,40 +65,6 @@
 
         .container {
             padding: 16px;
-        }
-
-        .horizontal-center {
-            margin: 0;
-            position: absolute;
-            left: 46.42vw;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .horizontal-center-2 {
-            margin: 0;
-            position: absolute;
-            left: 47vw;
-            top: 20vh;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .horizontal-center-3 {
-            margin: 0;
-            position: absolute;
-            left: 43.85vw;
-            top: 29vh;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .vertical-down {
-            margin: 0;
-            position: absolute;
-            top: 68.5vh;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
         }
 
         span.psw {
@@ -172,44 +145,36 @@
         }
     </style>
 </head>
+
 <body>
-
-<h2 style="text-align: center;">AvengeHers Create a New Account</h2>
-<p1></p1></br>
-<div class="horizontal-center">
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-user-plus"></i> Sign-Up</button>
-</div>
-
-<div class="horizontal-center-2">
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-sign-in-alt"></i> Login</button>
-</div>
-
-<div class="horizontal-center-3">
-    <a href="index.html"></ahref><button ><i class="fas fa-home"></i> Return to Home Page</button></a>
-</div>
-
-<div id="id01" class="modal">
-
-    <form class="modal-content animate" action="javascript:void(0);" id="loginForm">
-
-        <div class="container">
-            <label for="email"><b>Email: </b></label></br>
-            <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
-            <p1></p1></br>
-            <label for="password" ><b>Password:</b> </label>
-            <input type="password" name="password" id="password"><br/>
-            <label for="password-confirm"><b>Confirm Password:</b> </label>
-            <input type="password" name="password-confirm" id="password-confirm"><br/>
-            <input type="submit">
-        </div>
-
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        </div>
-    </form>
-</div>
-
-<script>
+    <h2 style="text-align: center;">AvengeHers Create a New Account</h2>
+    <p1></p1></br>
+    <div>
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-user-plus"></i> Sign-Up</button>
+    </div>
+    <div>
+        <a href="login.html"><button style="width:auto"><i class="fas fa-sign-in-alt"></i> Login</button></a>
+    </div>
+    <div>
+        <a href="index.html"><button><i class="fas fa-home"></i> Return to Home Page</button></a>
+    </div>
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="javascript:void(0);" id="createUserForm">
+            <div class="container">
+                <label for="email"><b>Email: </b></label></br>
+                <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br /><br />
+                <label for="password"><b>Password:</b> </label><br />
+                <input type="password" name="password" id="password"><br /><br />
+                <label for="password-confirm"><b>Confirm Password:</b> </label><br />
+                <input type="password" name="password-confirm" id="password-confirm"><br /><br />
+                <input type="submit">
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <script>
     // Get the modal
     var modal = document.getElementById('id01');
 
@@ -219,53 +184,60 @@
             modal.style.display = "none";
         }
     }
-</script>
-<div class="vertical-down">
-    <img src="studentGroupWalking.jpg" alt="students walking together"class="center" width="1250">
-</div>
+    </script>
+    <div class="vertical-down">
+        <img src="studentGroupWalking.jpg" alt="students walking together" class="center" width="1250">
+    </div>
 </body>
 <script>
-    let form = document.getElementById("createUserForm");
-    form.onchange = dataVerify;
-    form.onsubmit = dataSubmit;
+let form = document.getElementById("createUserForm");
+let emailInput = document.getElementById('email');
+let passwordInput = document.getElementById('password');
+let passwordConfirmInput = document.getElementById('password-confirm');
+form.onchange = () => {
+    passwordConfirmInput.setCustomValidity('');
+    emailInput.setCustomValidity('');
 
-    let emailInput = document.getElementById('email');
-    let passwordInput = document.getElementById('password');
-    let passwordConfirmInput = document.getElementById('password-confirm');
+};
+form.onsubmit = dataSubmit;
 
-    function dataVerify() {
-        let email = emailInput.value;
-        let password = passwordInput.value;
-        let passwordConfirm = passwordConfirmInput.value;
-        if (password != passwordConfirm) {
-            passwordInput.setCustomValidity("Passwords Don't Match");
-            passwordInput.reportValidity();
-        } else {
-            passwordInput.setCustomValidity('');
-            passwordInput.reportValidity();
-        }
-        if (!emailInput.checkValidity()) {
-            emailInput.setCustomValidity("Must be a Purdue Email Address");
-        } else {
-            emailInput.setCustomValidity('');
-        }
 
+
+function dataVerify() {
+    let email = emailInput.value;
+    let password = passwordInput.value;
+    let passwordConfirm = passwordConfirmInput.value;
+    if (!emailInput.checkValidity()) {
+        emailInput.setCustomValidity("Must be a Purdue Email Address");
+        return false;
+    }
+    if (password != passwordConfirm) {
+        passwordConfirmInput.setCustomValidity("Passwords Don't Match");
+        passwordConfirmInput.reportValidity();
+        return false;
     }
 
-    function dataSubmit() {
-        let formData = new FormData(form);
-        formData.delete("password-confirm");
-        let request = new XMLHttpRequest();
-        request.open('POST', 'create.html', false);
-        request.onload = () => {
-            if (request.readyState === request.DONE) {
-                if (request.status === 200) {
-                    console.log(request.response);
-                }
+    return true;
+}
+
+function dataSubmit() {
+    if (!dataVerify()) {
+        return;
+    }
+    let formData = new FormData(form);
+    formData.delete("password-confirm");
+    let request = new XMLHttpRequest();
+    request.open('POST', 'create.html', false);
+    request.onload = () => {
+        if (request.readyState === request.DONE) {
+            if (request.status === 200) {
+                console.log(request.response);
             }
         }
-        request.send(new URLSearchParams(new FormData(form)).toString())
-
     }
+    request.send(new URLSearchParams(new FormData(form)).toString())
+
+}
 </script>
+
 </html>

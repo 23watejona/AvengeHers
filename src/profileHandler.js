@@ -1,4 +1,3 @@
-import manageProfile from './manageProfile.js';
 import manageLogins from './manageLogins.js';
 import qs from 'qs';
 import hash from './hash.js';
@@ -23,7 +22,6 @@ export function profileHandler(req, res) {
                         continue;
                     }
                     if (g.users.includes(userData.uid)) {
-                        // IDK HOW TO DO THIS !!
                         events.push(g);
                     }
                 }
@@ -31,7 +29,7 @@ export function profileHandler(req, res) {
                 res.end(JSON.stringify(events));
             } else {
                 res.status(200);
-                let stats = manageProfile.getStats(data.email);
+                let stats = manageLogins.getUserByEmail(data.email);
                 res.end(JSON.stringify(stats));
             }
         } else {

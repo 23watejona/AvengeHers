@@ -8,8 +8,22 @@
     <style>
     body {
         font-family: "Lato", sans-serif;
-    }
 
+    }
+body {
+        height: 100vh;
+        background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
+    }
+    #createButton {
+            background-color: #000000;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+
+        }
     .sidebar {
         height: 100%;
         width: 0;
@@ -80,7 +94,6 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
         <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
         <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
-        <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
         <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
         <div id="logoutButton" style="display: none;">
             <li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
@@ -94,6 +107,8 @@
         <h1>AvengeHers</h1>
         <h1>Events</h1>
         <div id="logged-in" style="display: none;">
+            <div id="logged-in-content"></div><br>
+            <a href="createEvent.html"><button id="createButton"><i class="fa fa-plus"></i> Create your own event</button></a>
         </div>
         <div id="logged-out" style="display: block;">
             <h2>Sign in to view events</h2>
@@ -124,15 +139,15 @@
             for (let d of groups.groups) {
                 if (currDate != new Date(d.startTime * 1000).toLocaleDateString()) {
                     currEventHTML += "</div>";
-                    document.getElementById("logged-in").innerHTML += currEventHTML;
+                    document.getElementById("logged-in-content").innerHTML += currEventHTML;
                     currEventHTML = `<h2>${new Date(d.startTime * 1000).toLocaleDateString()}</h2><div class = "scrollmenu">`;
                 }
                 currEventHTML += `<a href="eventInfo.html?event=${d.event}">${d.event}</a>`;
             }
             currEventHTML += "</div>";
-            document.getElementById("logged-in").innerHTML += currEventHTML;
+            document.getElementById("logged-in-content").innerHTML += currEventHTML;
         } else {
-            document.getElementById("logged-in").innerHTML = `<h2> No Events Yet! </h2>`;
+            document.getElementById("logged-in-content").innerHTML = `<h2> No Events Yet! </h2>`;
         }
 
     }
@@ -169,7 +184,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     div.scrollmenu {
-        background-color: #333;
+        background-color: black;
         overflow: auto;
         white-space: nowrap;
     }
@@ -183,7 +198,7 @@
     }
 
     div.scrollmenu a:hover {
-        background-color: #777;
+        background-color:black;
     }
     </style>
     </head>

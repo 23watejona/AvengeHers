@@ -8,21 +8,20 @@
     <title></title>
     <style>
         body {
-            height: 1080px;
+            height: 100vh;
             background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
+            display: flex;
+            align-items: center;
+            justify-content: top;
+              flex-direction: column;
         }
         body {
             font-family: "Lato", sans-serif;
         }
 
-        /* Full-width input fields */
-        input[type=text], input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
+        input[type=email], input[type=password] {
+           border-style:solid;
+           border-width: 1px;
         }
 
         /* Set a style for all buttons */
@@ -37,6 +36,14 @@
 
         }
 
+        input[type=submit] {
+            border: none;
+            background-color: #2D8500;
+            color:white;
+        }
+        input[type=submit]:hover {
+            color: #CEB888;
+        }
         button:hover {
             color: #CEB888;
         }
@@ -44,7 +51,8 @@
         /* Extra styles for the cancel button */
         .cancelbtn {
             width: auto;
-            padding: 10px 18px;
+            padding: 2px 2px;
+            margin:2px;
             background-color: #f44336;
         }
 
@@ -58,39 +66,6 @@
 
         .container {
             padding: 16px;
-        }
-
-        .horizontal-center {
-            margin: 0;
-            position: absolute;
-            left: 47vw;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-        .horizontal-center-2 {
-            margin: 0;
-            position: absolute;
-            left: 43.7vw;
-            top: 20vh;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .horizontal-center-3 {
-            margin: 0;
-            position: absolute;
-            left: 43.85vw;
-            top: 29vh;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .vertical-down {
-            margin: 0;
-            position: absolute;
-            top: 68.5vh;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
         }
 
         span.psw {
@@ -172,14 +147,13 @@
 <p1></p1></br>
 
 
-<div class="horizontal-center">
+<div class="">
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto"><i class="fas fa-sign-in-alt"></i> Login</button>
 </div>
-
-<div class="horizontal-center-2">
+<div class="">
     <a href="create.html"></ahref><button ><i class="fas fa-user-plus"></i> Create a New Account</button></a>
 </div>
-<div class="horizontal-center-3">
+<div class="">
     <a href="index.html"></ahref><button ><i class="fas fa-home"></i> Return to Home Page</button></a>
 </div>
 
@@ -191,12 +165,10 @@
             <label for="email"><b>Email: </b></label></br>
             <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
             <p1></p1></br>
-            <label for="password" ><b>Password:</b> </label>
-            <input type="password" name="password" id="password"><br/>
-
+            <label for="password" ><b>Password:</b> </label></br>
+            <input type="password" name="password" id="password"><br/><br/>
             <input type="submit">
         </div>
-
         <div class="container" style="background-color:#f1f1f1">
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
         </div>
@@ -214,7 +186,7 @@
         }
     }
 </script>
-<div class="vertical-down">
+<div class="">
     <img src="peopleWalkingNight.jpg" alt="people walking together"class="center" width="1250">
 </div>
 </body>
