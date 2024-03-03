@@ -1,99 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
     <style>
-        body {
-            font-family: "Lato", sans-serif;
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        .sidebar a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            color: #f1f1f1;
-        }
-
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #111;
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
             color: white;
-            padding: 10px 15px;
+            padding: 14px 20px;
+            margin: 8px 0;
             border: none;
+            cursor: pointer;
+            width: 100%;
         }
 
-        .openbtn:hover {
-            background-color: #444;
+        button:hover {
+            opacity: 0.8;
         }
 
-        #main {
-            transition: margin-left .5s;
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .container {
             padding: 16px;
         }
 
-        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-        @media screen and (max-height: 450px) {
-            .sidebar {padding-top: 15px;}
-            .sidebar a {font-size: 18px;}
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+        }
+
+        @keyframes animatezoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-<div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9746;</a>
-    <li><a href="index.html" target = "_blank"><i class="fas fa-question-circle"></i>Home</a></li>
-    <li><a href="events.html" target = "_blank"><i class="fas fa-calendar-week"></i>Events</a></li>
-    <li><a href="walks.html" target = "_blank"><i class="fas fa-walking"></i>Walks</a></li>
-    <li><a href="profile.html" target = "_blank"><i class="fas fa-user-alt"></i>Profile</a></li>
-    <li><a href="logout.html" target = "_blank"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
-</div>
+<h2>Modal Login Form</h2>
 
-<div id="main">
-    <button class="openbtn" onclick="openNav()">&equiv;</button>
-    <h1>AvengeHers</h1>
-    <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="javascript:void(0);" id="loginForm">
+        <!--<form class="modal-content animate" action="javascript:void(0);" id="loginForm">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
+        <label for="password" >Password: </label>
+        <input type="password" name="password" id="password"><br />
+        <input type="submit">
+    </form>-->
+
+        <div class="container">
+            <label for="email"><b></b>Email: </b></label>
+            <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br />
+
+            <label for="password" ><b>Password:</b> </label>
+            <input type="password" name="password" id="password"><br/>
+
+            <input type="submit">
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        </div>
+    </form>
 </div>
 
 <script>
-    function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-    }
+    // Get the modal
+    var modal = document.getElementById('id01');
 
-    function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 </script>
 
 </body>
+<script>
+    let form = document.getElementById("loginForm");
+    form.onsubmit = dataSubmit;
+
+    let emailInput = document.getElementById('email');
+    let passwordInput = document.getElementById('password');
+
+    function dataSubmit() {
+        let formData = new FormData(form);
+        let request = new XMLHttpRequest();
+        request.open('POST', 'login.html', false);
+        request.onload = () => {
+            if (request.readyState === request.DONE) {
+                if (request.status === 200) {
+                    document.cookie = `username=${formData.get("email")};`;
+                    document.cookie = `auth=${request.responseText};`;
+                    document.cookie = `logged-in=true;`;
+                    window.location.href = '/';
+                }
+            }
+        }
+        request.send(new URLSearchParams(new FormData(form)).toString())
+
+    }
+</script>
 </html>
