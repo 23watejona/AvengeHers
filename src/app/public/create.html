@@ -69,7 +69,8 @@ function dataSubmit() {
             }
         }
     }
-    request.send(new URLSearchParams(new FormData(form)).toString())
+    console.log((new FormData(form)).toString);
+    request.send(new URLSearchParams(new FormData(form)).toString());
 
 }
 </script>
