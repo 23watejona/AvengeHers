@@ -7,6 +7,12 @@
         .checked {
             color: orange;
         }
+
+        img {
+            border-radius: 50%;
+            padding: 20px;
+        }
+
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -83,13 +89,38 @@
     <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
     <li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
 </div>
+
 <div id="main">
     <button class="openbtn" onclick="openNav()">&equiv;</button>
     <h1>Profile</h1>
-    
-    <h2 id="starRating">Rating: </h2>
 
-    <h3 id="walks">Walks: </h3>
+    <h2>Rating: </h2>
+
+    
+
+    <img src="womanIcon.png" alt="icon image" width="150" style="float:left"></br>
+    <p1><b>Jane Doe</b></p1><br>
+    <p2></p2></br>
+    <p3><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p3></br>
+    <p4></p4></br>
+    <p5 id="starRating"></p5><br>
+
+    <div id="innerstar">
+
+    </div>
+
+    <p6></p6></br>
+    <p7><b>Number of Walks:</b> 59</p7><br>
+    <p8></p8></br>
+    <p9></p9></br>
+    <p10></p10></br>
+    <p11></p11></br>
+    <p12><b>Account Information:</b></p12></br>
+    <p12></p12></br>
+    <p13><b>Email:</b> name@collegeuni.edu</p13><br>
+    <p13></p13></br>
+    <p14></p14></br>
+    <a href="#"><i class="fas fa-edit"></i>Edit Account Information</a><br>
 </div>
 
 <script>
@@ -102,26 +133,38 @@
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginLeft= "0";
     }
-    
-    // Combine IDK IF IT WORKS
 
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
     function loadStats(walkStats) {
         let walks = walkStats.numWalks;
         let rating = walkStats.rating;
 
+        //TESTING
+        rating = 3;
+        console.log("got here");
+
         var ratingLabel = document.getElementById("starRating");
         ratingLabel.innerHTML = "Rating: " + rating;
+        document.getElementById('starRating').style.fontWeight = "bold";
 
-        for (let x = 0; x < Math.floor(rating); x++) {
-            document.getElementById('main').innerHTML += "<span class=fa fa-star checked>" + "</span>";
+        for (let x = 0; x < 5; x++) {
+        //for (let x = 0; x < Math.floor(rating); x++) { // FOR TESTING SAKE
+            //document.getElementById('innerstar').innerHTML += `<span class="fa fa-star checked">` + `</span>`;
+            GetElementInsideContainer('main', 'innerstar').innerHTML += 
+            document.getElementById('innerstar').innerHTML += `<p1>the</p1>`;
         }
         for (let x = Math.floor(rating); x < 5; x++) {
-            document.getElementById('main').innerHTML += "<span class=fa fa-star>" + "</span>";
-            document.getElem
+            document.getElementById('innerstar').innerHTML += `<span class="fa fa-star">` + `</span>`; 
         }
 
         var walkLabel = document.getElementById("walks");
         walkLabel.innerHTML = "Walks: " + walks;
+        document.getElementById('walks').style.fontWeight = "bold";
     }
 
     let stats;
@@ -130,6 +173,7 @@
         if (getCookie("logged-in") == "true") {
             let formData = new FormData();
             let request = new XMLHttpRequest();
+
             if(getCookie("username") != undefined && getCookie("auth") != undefined)
             formData.set("authCode", getCookie("auth"));
             formData.set("email", getCookie("username"));
@@ -139,6 +183,7 @@
                     if (request.status === 200) {
                        stats = JSON.parse(request.responseText);
                        loadStats(stats);
+                       console.log("got here");
                        document.getElementById("logged-in").style.display = "block";
                        document.getElementById("logged-out").style.display = "none";
                     } else {
