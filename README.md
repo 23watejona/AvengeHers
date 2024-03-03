@@ -16,6 +16,8 @@ in browser of choice, search http://localhost:3000
 ## Or, if online is more your thing
 [Access the replit here](https://replit.com/@dhm0/AvengeHers?v=1#README.md)
 
+Note that in order for all functionality to work correctly, you must open it in an external tab (not the built-in replit webview tab)
+
 ## Inspiration
 Our inspiration comes from our own personal experiences having to walk somewhere alone at night, often feeling unsafe or disconnected. Because we notice and face this problem regularly, we knew our product would help this issue in some way or another, and in a way that is accessible to everyone on a college campus.
 
