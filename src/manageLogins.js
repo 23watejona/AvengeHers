@@ -1,4 +1,4 @@
-import fs from '@cyclic.sh/s3fs/promises';
+import fs from 'fs';
 import logins from './app/app-data/logins.json' assert { type: 'json' };
 import hash from './hash.js';
 import generateRandomString from './randomString.js';
