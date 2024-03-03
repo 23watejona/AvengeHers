@@ -23,7 +23,6 @@ let passwordInput = document.getElementById('password');
 
 function dataSubmit() {
     let formData = new FormData(form);
-    formData.delete("password-confirm");
     let request = new XMLHttpRequest();
     request.open('POST', 'login.html', false);
     request.onload = () => {
