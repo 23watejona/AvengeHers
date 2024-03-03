@@ -4,7 +4,7 @@ import {createPageHandler} from './createUser.js'
 
 import {loginPageHandler} from './login.js'
 import {logoutPageHandler} from './logout.js'
-import {groupPageHandler, eventInfoHandler, registerForGroupPageHandler, leaveGroupPageHandler, createGroupPageHandler} from './groupHandler.js'
+import {groupPageHandler, eventInfoHandler, registerForGroupPageHandler, leaveGroupPageHandler, createGroupPageHandler, getGroupMembersHandler} from './groupHandler.js'
 import {authHandler} from './authHandler.js'
 import {profileHandler} from './profileHandler.js'
 import {emailAuthHandler} from './emailAuthHandler.js'
@@ -25,6 +25,7 @@ app.post('/eventInfo.html', eventInfoHandler);
 app.post('/registerForEvent.html', registerForGroupPageHandler);
 app.post('/leaveEvent.html', leaveGroupPageHandler);
 app.post('/createEvent.html', createGroupPageHandler);
+app.post('/getGroupInfo.html', getGroupMembersHandler);
 app.post('/logout.html', logoutPageHandler);
 app.post('/profile.html', profileHandler);
 app.post('/auth', authHandler);

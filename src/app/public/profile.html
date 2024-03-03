@@ -194,7 +194,7 @@
         var eventdiv = document.getElementById('currentEvents');
 
         for (let g of groups) {
-            eventdiv.innerHTML += `<div><h2>${g.event}</h2><a href="leaveEvent.html?event=${g.event}">Leave Event</a>`;
+            eventdiv.innerHTML += `<div><h2>${g.event}</h2><a href="getGroupInfo.html?event=${g.event}"><button>See Group Members</button></a><a href="leaveEvent.html?event=${g.event}"><button>Leave Event</button></a>`;
         }
 
     }

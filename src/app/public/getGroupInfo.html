@@ -8,22 +8,11 @@
     <style>
     body {
         font-family: "Lato", sans-serif;
-
     }
-body {
+    body {
         height: 100vh;
         background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
     }
-    #createButton {
-            background-color: #000000;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-
-        }
     .sidebar {
         height: 100%;
         width: 0;
@@ -105,10 +94,7 @@ body {
     <div id="main">
         <button class="openbtn" onclick="openNav()">&equiv;</button>
         <h1>AvengeHers</h1>
-        <h1>Events</h1>
         <div id="logged-in" style="display: none;">
-            <div id="logged-in-content"></div><br>
-            <a href="createEvent.html"><button id="createButton"><i class="fa fa-plus"></i> Create your own event</button></a>
         </div>
         <div id="logged-out" style="display: block;">
             <h2>Sign in to view events</h2>
@@ -131,25 +117,12 @@ body {
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    function loadGroups(groups) {
-        groups.groups.sort((a, b) => a.startTime - b.startTime);
-        if (groups.groups.length != 0) {
-            let currDate = new Date(groups.groups[0].startTime * 1000).toLocaleDateString();
-            let currEventHTML = `<h2>${currDate}</h2><div class = "scrollmenu">`;
-            for (let d of groups.groups) {
-                if (currDate != new Date(d.startTime * 1000).toLocaleDateString()) {
-                    currDate = new Date(d.startTime * 1000).toLocaleDateString();
-                    currEventHTML += "</div>";
-                    document.getElementById("logged-in-content").innerHTML += currEventHTML;
-                    currEventHTML = `<h2>${new Date(d.startTime * 1000).toLocaleDateString()}</h2><div class = "scrollmenu">`;
-                }
-                currEventHTML += `<a href="eventInfo.html?event=${d.event}">${d.event}</a>`;
-            }
-            currEventHTML += "</div>";
-            document.getElementById("logged-in-content").innerHTML += currEventHTML;
-        } else {
-            document.getElementById("logged-in-content").innerHTML = `<h2> No Events Yet! </h2>`;
+    function loadGroupMembers(groupMembers) {
+        document.getElementById("logged-in").innerHTML += `<h1>${new URLSearchParams(window.location.search).get("event")} Group Members</h1>`
+        for(g of groupMembers) {
+             document.getElementById("logged-in").innerHTML += `<h2>${g.name}</h2>`
         }
+
 
     }
 
@@ -159,15 +132,15 @@ body {
             let formData = new FormData();
             let request = new XMLHttpRequest();
             if (getCookie("username") != undefined && getCookie("auth") != undefined) {
-
                 formData.set("authCode", getCookie("auth"));
                 formData.set("email", getCookie("username"));
-                request.open('POST', 'events.html', false);
+                formData.set("event", new URLSearchParams(window.location.search).get("event"))
+                request.open('POST', 'getGroupInfo.html', false);
                 request.onload = () => {
                     if (request.readyState === request.DONE) {
                         if (request.status === 200) {
-                            groups = JSON.parse(request.responseText);
-                            loadGroups(groups);
+                            groupMembers = JSON.parse(request.responseText);
+                            loadGroupMembers(groupMembers.members);
                             document.getElementById("logged-in").style.display = "block";
                             document.getElementById("loginButton").style.display = "none";
                             document.getElementById("logged-out").style.display = "none";
@@ -182,13 +155,9 @@ body {
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    div.scrollmenu {
-        background-color: black;
-        overflow: auto;
-        white-space: nowrap;
-    }
-
+    
     div.scrollmenu a {
+        background-color: #333;
         display: inline-block;
         color: white;
         text-align: center;
@@ -197,8 +166,9 @@ body {
     }
 
     div.scrollmenu a:hover {
-        background-color:black;
+        background-color: #777;
     }
+
     </style>
     </head>
 </body>

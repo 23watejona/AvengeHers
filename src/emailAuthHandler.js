@@ -9,7 +9,8 @@ export function emailAuthHandler(req, res) {
         data.auth = hash(data.auth);
         if(manageLogins.checkEmailAuth(data.email, data.auth)) {
             res.status(308);
-            res.setHeader("Refresh", "0;url=/")
+            res.setHeader("Refresh", "0;url=/login.html")
+            res.end()
         } else {
             res.status(403);
             res.end("Invalid");

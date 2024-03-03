@@ -161,6 +161,8 @@
     <div id="id01" class="modal">
         <form class="modal-content animate" action="javascript:void(0);" id="createUserForm">
             <div class="container">
+                <label for="name"><b>Name: </b></label></br>
+                <input type="text" name="name" id="name"><br /><br />
                 <label for="email"><b>Email: </b></label></br>
                 <input type="email" name="email" id="email" pattern="^\w+?@purdue\.edu$" oninvalid="this.setCustomValidity('Must be a Purdue Email')" oninput="this.setCustomValidity('')"><br /><br />
                 <label for="password"><b>Password:</b> </label><br />
@@ -231,7 +233,7 @@ function dataSubmit() {
     request.onload = () => {
         if (request.readyState === request.DONE) {
             if (request.status === 200) {
-                console.log(request.response);
+                window.location.href = "/login.html";
             }
         }
     }

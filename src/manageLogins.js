@@ -9,16 +9,27 @@ import PublicUserData from './objects/publicUserData.js';
 export function getUserByID(uid) {
 	for(let login of publicData.users) {
 		if(login.uid == uid) {
-			return login;
+			return structuredClone(login);
 		}
 	}
 	return undefined;
 }
 
+export function incrementWalk(uid) {
+	for(let i = 0; i < publicData.users.length; ++i) {
+		if(publicData.users[i].uid == uid) {
+			++publicData.users[i].numWalks;
+			fs.writeFileSync('src/app/app-data/public-data.json', JSON.stringify(publicData));
+			return true;
+		}
+	}
+	return false;
+}
+
 export function getUserByEmail(email) {
 	for(let login of publicData.users) {
 		if(login.email == email) {
-			return login;
+			return structuredClone(login);
 		}
 	}
 	return undefined;
@@ -82,6 +93,14 @@ export function checkEmailAuth(email, authHash) {
 	}
 	return false;
 }
+export function checkEmail(email) {
+	for(let login of logins.users) {
+		if(login.email === email) {
+			return login.confirmedEmail;
+		}
+	}
+	return false;
+}
 export function checkAuth(email, authHash) {
 	for(let login of logins.users) {
 		if(login.email === email && authHash == login.authHash && login.expiry >  Math.floor(new Date().getTime() / 1000)) {
@@ -107,5 +126,7 @@ export default {
 	checkAuth: checkAuth,
 	logout: logout,
 	saveEmailAuth: saveEmailAuth,
-	checkEmailAuth: checkEmailAuth
+	checkEmailAuth: checkEmailAuth,
+	checkEmail: checkEmail,
+	incrementWalk: incrementWalk
 }
