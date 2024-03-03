@@ -82,15 +82,18 @@
         <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
         <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
         <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
-        <div id="logoutButton" style="display: none;"><li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li></div>
-        <div id="loginButton" style="display: block;"><li><a href="login.html"><i class="fas fa-arrow-circle-left"></i>Login</a></li> </div>
+        <div id="logoutButton" style="display: none;">
+            <li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
+        </div>
+        <div id="loginButton" style="display: block;">
+            <li><a href="login.html"><i class="fas fa-arrow-circle-left"></i>Login</a></li>
+        </div>
     </div>
     <div id="main">
         <button class="openbtn" onclick="openNav()">&equiv;</button>
         <h1>AvengeHers</h1>
-        <h1>Events</h1>
+        <h1>Event</h1>
         <div id="logged-in" style="display: none;">
-
         </div>
         <div id="logged-out" style="display: block;">
             <h2>Sign in to view events</h2>
@@ -113,63 +116,51 @@
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    function loadGroups(groups) {
-        groups.groups.sort((a, b) => a.startTime - b.startTime);
-        if (groups.groups.length != 0) {
-            let currDate = new Date(groups.groups[0].startTime * 1000).toLocaleDateString();
-            let currEventHTML = `<h2>${currDate}</h2><div class = "scrollmenu">`;
-            for (let d of groups.groups) {
-                if (currDate != new Date(d.startTime * 1000).toLocaleDateString()){
-                    currEventHTML += "</div>";
-                    document.getElementById("logged-in").innerHTML += currEventHTML;
-                    currEventHTML = `<h2>${new Date(d.startTime * 1000).toLocaleDateString()}</h2><div class = "scrollmenu">`;
-                }
-                currEventHTML += `<a href="eventInfo.html?event=${d.event}">${d.event}</a>`;
-            }
-            currEventHTML += "</div>";
-            document.getElementById("logged-in").innerHTML += currEventHTML;
-        } else {
-            document.getElementById("logged-in").innerHTML = `<h2> No Events Yet! </h2>`;
-        }
+    function loadGroups(group) {
+        document.getElementById("logged-in").innerHTML += `
+            <h2>Name: ${group.event}</h2>
+            <h2>Date: ${(new Date(group.startTime * 1000)).toLocaleDateString()}</h2>
+            <h2>Start Time: ${(new Date(group.startTime * 1000)).toLocaleTimeString()}</h2>
+            <div class="scrollmenu"><a class = "scrollmenu" href="registerForEvent.html?event=${group.event}">Register</a></div>
+        `;
+
 
     }
-    
+
     let groups;
     window.onload = () => {
         if (getCookie("logged-in") == "true") {
             let formData = new FormData();
             let request = new XMLHttpRequest();
-            if (getCookie("username") != undefined && getCookie("auth") != undefined)
+            if (getCookie("username") != undefined && getCookie("auth") != undefined) {
                 formData.set("authCode", getCookie("auth"));
-            formData.set("email", getCookie("username"));
-            request.open('POST', 'events.html', false);
-            request.onload = () => {
-                if (request.readyState === request.DONE) {
-                    if (request.status === 200) {
-                        groups = JSON.parse(request.responseText);
-                        loadGroups(groups);
-                        document.getElementById("logged-in").style.display = "block";
-                        document.getElementById("loginButton").style.display = "none";
-                        document.getElementById("logged-out").style.display = "none";
-                        document.getElementById("logoutButton").style.display = "block";
-                    } else {
-                        document.cookie = "logged-in=false;";
+                formData.set("email", getCookie("username"));
+                formData.set("event", new URLSearchParams(window.location.search).get("event"))
+                request.open('POST', 'eventInfo.html', false);
+                request.onload = () => {
+                    if (request.readyState === request.DONE) {
+                        if (request.status === 200) {
+                            groups = JSON.parse(request.responseText);
+                            loadGroups(groups);
+                            document.getElementById("logged-in").style.display = "block";
+                            document.getElementById("loginButton").style.display = "none";
+                            document.getElementById("logged-out").style.display = "none";
+                            document.getElementById("logoutButton").style.display = "block";
+                        } else {
+                            document.cookie = "logged-in=false;";
+                        }
                     }
                 }
+                request.send(new URLSearchParams(formData).toString())
             }
-            request.send(new URLSearchParams(formData).toString())
         }
     }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    div.scrollmenu {
-        background-color: #333;
-        overflow: auto;
-        white-space: nowrap;
-    }
-
+    
     div.scrollmenu a {
+        background-color: #333;
         display: inline-block;
         color: white;
         text-align: center;
@@ -180,6 +171,7 @@
     div.scrollmenu a:hover {
         background-color: #777;
     }
+
     </style>
     </head>
 </body>

@@ -3,7 +3,7 @@ import fs from 'fs';
 import {createPageHandler} from './createUser.js'
 import {loginPageHandler} from './login.js'
 import {logoutPageHandler} from './logout.js'
-import {groupPageHandler} from './groupHandler.js'
+import {groupPageHandler, eventInfoHandler, registerForGroupPageHandler} from './groupHandler.js'
 import {authHandler} from './authHandler.js'
 import {profileHandler} from './profileHandler.js'
 
@@ -18,6 +18,8 @@ app.get('/', (req, res) => {
 app.post('/create.html', createPageHandler);
 app.post('/login.html', loginPageHandler);
 app.post('/events.html', groupPageHandler);
+app.post('/eventInfo.html', eventInfoHandler);
+app.post('/registerForEvent.html', registerForGroupPageHandler);
 app.post('/logout.html', logoutPageHandler);
 app.post('/profile.html', profileHandler);
 app.post('/auth', authHandler);
