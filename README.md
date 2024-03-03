@@ -1,5 +1,14 @@
 # AvengeHers
 
+## If you wish to run the site locally:
+Install npm and node.js on your computer
+cd into directory
+cd into AvengeHers folder
+Using terminal, run npm install
+run npm test
+in browser of choice, search http://localhost:3000
+
+
 ## Inspiration
 Our inspiration comes from our own personal experiences having to walk somewhere alone at night, often feeling unsafe or disconnected. Because we notice and face this problem regularly, we knew our product would help this issue in some way or another, and in a way that is accessible to everyone on a college campus.
 
