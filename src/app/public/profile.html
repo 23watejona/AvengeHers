@@ -20,6 +20,10 @@
             font-family: "Lato", sans-serif;
         }
 
+        .vertSpace {
+            margin-bottom:20px;
+        }
+
         .sidebar {
             height: 100%;
             width: 0;
@@ -99,23 +103,16 @@
     
 
     <img src="womanIcon.png" alt="icon image" width="150" style="float:left"></br>
-    <p1><b>Jane Doe</b></p1><br>
-    <p2></p2></br>
-    <p3><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p3></br>
-    <p4></p4></br>
-    <p5 id="starRating"></p5><br>
+    <p1 class="vertSpace"><b>Jane Doe</b></p1><br>
+    <p2 style="margin-bottom:1cm"><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p2></br>
+    <p3 id="starRating"></p3><br>
 
     <div id="innerstar">
 
     </div>
 
-    <p6></p6></br>
-    <p7><b>Number of Walks:</b> 59</p7><br>
-    <p8></p8></br>
-    <p9></p9></br>
-    <p10></p10></br>
-    <p11></p11></br>
-    <p12><b>Account Information:</b></p12></br>
+    <p4 style="margin-bottom:1cm"><b>Number of Walks:</b></p4><br>
+    <p5 style="margin-bottom:1cm"><b>Account Information:</b></p5></br>
     <p12></p12></br>
     <p13><b>Email:</b> name@collegeuni.edu</p13><br>
     <p13></p13></br>
@@ -152,10 +149,9 @@
         ratingLabel.innerHTML = "Rating: " + rating;
         document.getElementById('starRating').style.fontWeight = "bold";
 
-        for (let x = 0; x < 5; x++) {
-        //for (let x = 0; x < Math.floor(rating); x++) { // FOR TESTING SAKE
-            //document.getElementById('innerstar').innerHTML += `<span class="fa fa-star checked">` + `</span>`;
-            GetElementInsideContainer('main', 'innerstar').innerHTML += 
+        for (let x = 0; x < Math.floor(rating); x++) { 
+            console.log("got here");
+            document.getElementById('innerstar').innerHTML += `<span class="fa fa-star checked">` + `</span>`;
             document.getElementById('innerstar').innerHTML += `<p1>the</p1>`;
         }
         for (let x = Math.floor(rating); x < 5; x++) {
