@@ -2,10 +2,15 @@
 
 ## If you wish to run the site locally:
 Install npm and node.js on your computer
+
 cd into directory
+
 cd into AvengeHers folder
+
 Using terminal, run npm install
+
 run npm test
+
 in browser of choice, search http://localhost:3000
 
 
