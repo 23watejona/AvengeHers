@@ -1,5 +1,6 @@
 export default class publicUserData {
-	constructor(email, uid) {
+	constructor(name, email, uid) {
+		this.name = name;
 		this.email = email;
 		this.uid = uid;
 		this.rating = 0;
