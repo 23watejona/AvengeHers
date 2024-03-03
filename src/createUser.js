@@ -6,13 +6,19 @@ import generateRandomString from './randomString.js';
 
 function createUser(name, email, hashedPassword) {
 	let uid = generateRandomString(16);
+	console.log("got here");
 	if(manageLogins.getUserByEmail(email) != undefined) {
 		throw new Error("Email exists");
 	}
 	while(manageLogins.getUserByEmail(email) != undefined) {
 		uid = generateRandomString(16);
+		manageLogins.addLogin(email, hashedPassword, uid);
 	}
+<<<<<<< Updated upstream
 	manageLogins.addLogin(name, email, hashedPassword, uid);
+=======
+	
+>>>>>>> Stashed changes
 }
 
 export function createPageHandler(req, res) {

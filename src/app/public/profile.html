@@ -109,18 +109,23 @@
     <p1><b>Jane Doe</b></p1>
     <br>
     <br>
-    <p2><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p2>
+    <p2><b>Bio:</b> This is just filler text</p2>
     <br>
     <br>
     <p4 id="walks"><b>Number of Walks:</b></p4>
     <br>
     <br>
-    <p5><b>Account Information:</b></p5>
+    <p6 id="email">Email: </p6>
     <br>
     <br>
-    <p6><b>Email:</b> name@collegeuni.edu</p6>
     <br>
     <br>
+    <p7><b>Currently Registered Events: </b></p7>
+    <br>
+    <div id="currentEvents">
+        
+    </div>
+
 </div>
 <div id = "logged-out" style="display:block;">
     <h2>Login to view Profile</h2>
@@ -150,17 +155,52 @@
 
         console.log(rating);
 
-        for (let x = 0; x < Math.floor(rating); x++) { 
+        for (let x = 0; x < Math.round(rating); x++) { 
             document.getElementById('innerstar').innerHTML += `<span class="fa fa-star checked">` + `</span>`;
         }
-        for (let x = Math.floor(rating); x < 5; x++) {
+        for (let x = Math.round(rating); x < 5; x++) {
             document.getElementById('innerstar').innerHTML += `<span class="fa fa-star">` + `</span>`; 
         }
 
         var walkLabel = document.getElementById("walks");
         walkLabel.innerHTML = "Walks: " + walks;
         document.getElementById('walks').style.fontWeight = "bold";
+
+        var emailLabel = document.getElementById("email");
+        emailLabel.innerHTML = "Email: " + walkStats.email;
+        document.getElementById('email').style.fontWeight = "bold";
+
+        
+        // IDKKKK
+        let groups;
+        let request2 = new XMLHttpRequest();
+        let formData = new FormData();
+        if(getCookie("username") != undefined && getCookie("auth") != undefined){
+            formData.set("authCode", getCookie("auth"));
+            formData.set("email", getCookie("username"));
+            formData.set("switch", "1");
+            request2.open('POST', '/profile.html', false);
+            request2.onload = () => {
+                if (request2.readyState === request2.DONE) {
+                    if (request2.status === 200) {
+                        groups = JSON.parse(request2.responseText);
+                    } else {
+                        document.cookie = "logged-in=false;";
+                    }
+                }
+            }
+            request2.send(new URLSearchParams(formData).toString())
+        }
+
+        var eventdiv = document.getElementById('currentEvents');
+
+        for (let g of groups) {
+            eventdiv.innerHTML += `<div><h2>${g.event}</h2><a href="leaveEvent.html?event=${g.event}">Leave Event</a>`;
+        }
+
     }
+
+    // leaveEvent.html?event={eventname}
 
     let stats;
     window.onload = () => {
@@ -172,13 +212,13 @@
             if(getCookie("username") != undefined && getCookie("auth") != undefined)
             formData.set("authCode", getCookie("auth"));
             formData.set("email", getCookie("username"));
+            formData.set("switch", "0");
             request.open('POST', '/profile.html', false);
             request.onload = () => {
                 if (request.readyState === request.DONE) {
                     if (request.status === 200) {
                         stats = JSON.parse(request.responseText);
                         loadStats(stats);
-                        console.log("got here");
                         document.getElementById("logged-in").style.display = "block";
                         document.getElementById("logged-out").style.display = "none";
                         document.getElementById("loginButton").style.display = "none";
@@ -192,6 +232,24 @@
         }
     }
 </script>
+    <style>
+    div.scrollmenu {
+        background-color: #333;
+        overflow: auto;
+        white-space: nowrap;
+    }
 
+    div.scrollmenu a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
+
+    div.scrollmenu a:hover {
+        background-color: #777;
+    }
+    </style>
 </body>
 </html>
