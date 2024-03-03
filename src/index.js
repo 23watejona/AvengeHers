@@ -4,6 +4,7 @@ import {createPageHandler} from './createUser.js'
 import {loginPageHandler} from './login.js'
 import {logoutPageHandler} from './logout.js'
 import {groupPageHandler} from './groupHandler.js'
+import {authHandler} from './authHandler.js'
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,7 @@ app.post('/create.html', createPageHandler);
 app.post('/login.html', loginPageHandler);
 app.post('/events.html', groupPageHandler);
 app.post('/logout.html', logoutPageHandler);
+app.post('/auth', authHandler);
 
 app.listen(port, () => {
   console.log(`AvengeHers app listening on port ${port}`)

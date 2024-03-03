@@ -84,16 +84,16 @@
     </style>
 </head>
 <body>
-
 <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
-    <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
-    <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
-    <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
-    <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
-    <li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
-</div>
 
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+        <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
+        <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
+        <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
+        <div id="logoutButton" style="display: none;"><li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li></div>
+        <div id="loginButton" style="display: block;"><li><a href="login.html"><i class="fas fa-arrow-circle-left"></i>Login</a></li> </div>
+    </div>
 <div id="main">
     <button class="openbtn" onclick="openNav()">&equiv;</button>
     <h1>Profile</h1>
@@ -173,7 +173,7 @@
             if(getCookie("username") != undefined && getCookie("auth") != undefined)
             formData.set("authCode", getCookie("auth"));
             formData.set("email", getCookie("username"));
-            request.open('POST', 'events.html', false);
+            request.open('POST', 'auth', false);
             request.onload = () => {
                 if (request.readyState === request.DONE) {
                     if (request.status === 200) {
@@ -182,6 +182,8 @@
                        console.log("got here");
                        document.getElementById("logged-in").style.display = "block";
                        document.getElementById("logged-out").style.display = "none";
+                       document.getElementById("loginButton").style.display = "none";
+                        document.getElementById("logoutButton").style.display = "block";
                     } else {
                         document.cookie = "logged-in=false;";
                     }

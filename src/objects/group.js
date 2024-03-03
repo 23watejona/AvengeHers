@@ -9,7 +9,7 @@ export default class group {
 		this.event = event;
 		this.start = start;
 		this.destination = destination;
-		this.startTime = startTime;
+		this.startTime = Date.parse(startTime);
 		this.users = [];
 	}
 

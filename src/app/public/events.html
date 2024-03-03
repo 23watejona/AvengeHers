@@ -82,27 +82,15 @@
         <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
         <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
         <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
-        <li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
+        <div id="logoutButton" style="display: none;"><li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li></div>
+        <div id="loginButton" style="display: block;"><li><a href="login.html"><i class="fas fa-arrow-circle-left"></i>Login</a></li> </div>
     </div>
-    <div id="main" >
+    <div id="main">
         <button class="openbtn" onclick="openNav()">&equiv;</button>
         <h1>AvengeHers</h1>
         <h1>Events</h1>
         <div id="logged-in" style="display: none;">
-            <h2>Monday, March 4</h2>
-            <div class="scrollmenu">
-                <a href="#">Event One</a>
-                <a href="#">Event Two</a>
-                <a href="#">Event Three</a>
-                <a href="#">Event Four</a>
-            </div>
-            <h2>Tuesday, March 5</h2>
-            <div class="scrollmenu">
-                <a href="#">Event One</a>
-                <a href="#">Event Two</a>
-                <a href="#">Event Three</a>
-                <a href="#">Event Four</a>
-            </div>
+
         </div>
         <div id="logged-out" style="display: block;">
             <h2>Sign in to view events</h2>
@@ -126,26 +114,44 @@
     }
 
     function loadGroups(groups) {
+        groups.groups.sort((a, b) => a.startTime - b.startTime);
+        if (groups.groups.length != 0) {
+            let currDate = new Date(groups.groups[0].startTime * 1000).toLocaleDateString();
+            let currEventHTML = `<h2>${currDate}</h2><div class = "scrollmenu">`;
+            for (let d of groups.groups) {
+                if (currDate != new Date(d.startTime * 1000).toLocaleDateString()){
+                    currEventHTML += "</div>";
+                    document.getElementById("logged-in").innerHTML += currEventHTML;
+                    currEventHTML = `<h2>${new Date(d.startTime * 1000).toLocaleDateString()}</h2><div class = "scrollmenu">`;
+                }
+                currEventHTML += `<a href="#">${d.event}</a>`;
+            }
+            currEventHTML += "</div>";
+            document.getElementById("logged-in").innerHTML += currEventHTML;
+        } else {
+            document.getElementById("logged-in").innerHTML = `<h2> No Events Yet! </h2>`;
+        }
 
     }
     
     let groups;
     window.onload = () => {
-        let decodedCookie = decodeURIComponent(document.cookie);
         if (getCookie("logged-in") == "true") {
             let formData = new FormData();
             let request = new XMLHttpRequest();
-            if(getCookie("username") != undefined && getCookie("auth") != undefined)
-            formData.set("authCode", getCookie("auth"));
+            if (getCookie("username") != undefined && getCookie("auth") != undefined)
+                formData.set("authCode", getCookie("auth"));
             formData.set("email", getCookie("username"));
             request.open('POST', 'events.html', false);
             request.onload = () => {
                 if (request.readyState === request.DONE) {
                     if (request.status === 200) {
-                       groups = JSON.parse(request.responseText);
-                       loadGroups(groups);
-                       document.getElementById("logged-in").style.display = "block";
-                       document.getElementById("logged-out").style.display = "hidden";
+                        groups = JSON.parse(request.responseText);
+                        loadGroups(groups);
+                        document.getElementById("logged-in").style.display = "block";
+                        document.getElementById("loginButton").style.display = "none";
+                        document.getElementById("logged-out").style.display = "none";
+                        document.getElementById("logoutButton").style.display = "block";
                     } else {
                         document.cookie = "logged-in=false;";
                     }

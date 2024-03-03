@@ -84,5 +84,6 @@ export default {
 	getUserByEmail: getUserByEmail,
 	generateAuth: generateAuth,
 	reauth: reauth,
-	checkAuth: checkAuth
+	checkAuth: checkAuth,
+	logout: logout
 }
