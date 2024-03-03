@@ -23,7 +23,6 @@ let passwordInput = document.getElementById('password');
 
 function dataSubmit() {
     let formData = new FormData(form);
-    formData.delete("password-confirm");
     let request = new XMLHttpRequest();
     request.open('POST', 'login.html', false);
     request.onload = () => {
@@ -31,6 +30,8 @@ function dataSubmit() {
             if (request.status === 200) {
                 document.cookie = `username=${formData.get("email")};`;
          		document.cookie = `auth=${request.responseText};`;
+                document.cookie = `logged-in=true;`;
+         		window.location.href = '/';
             }
         }
     }

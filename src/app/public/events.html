@@ -1,106 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: "Lato", sans-serif;
-        }
+    body {
+        font-family: "Lato", sans-serif;
+    }
 
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #000000;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #CEB888;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+        color: #373A36;
+    }
+
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #000000;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+    }
+
+    .openbtn:hover {
+        background-color: #373A36;
+    }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
         .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #000000;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
+            padding-top: 15px;
         }
 
         .sidebar a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #CEB888;
-            display: block;
-            transition: 0.3s;
+            font-size: 18px;
         }
-
-        .sidebar a:hover {
-            color: #373A36;
-        }
-
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #000000;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-        }
-
-        .openbtn:hover {
-            background-color: #373A36;
-        }
-
-        #main {
-            transition: margin-left .5s;
-            padding: 16px;
-        }
-
-        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-        @media screen and (max-height: 450px) {
-            .sidebar {padding-top: 15px;}
-            .sidebar a {font-size: 18px;}
-        }
+    }
     </style>
 </head>
+
 <body>
-
-<div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
-    <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
-    <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
-    <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
-    <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
-    <li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li>
-</div>
-
-<div id="main">
-    <button class="openbtn" onclick="openNav()">&equiv;</button>
-    <h1>AvengeHers</h1>
-    <h1>Events</h1>
-    <h2>Monday, March 4</h2>
-    <div class="scrollmenu">
-        <a href="#">Event One</a>
-        <a href="#">Event Two</a>
-        <a href="#">Event Three</a>
-        <a href="#">Event Four</a>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+        <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="events.html"><i class="fas fa-calendar-week"></i>Events</a></li>
+        <li><a href="walks.html"><i class="fas fa-walking"></i>Walks</a></li>
+        <li><a href="profile.html"><i class="fas fa-user-alt"></i>Profile</a></li>
+        <div id="logoutButton" style="display: none;"><li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li></div>
+        <div id="loginButton" style="display: block;"><li><a href="login.html"><i class="fas fa-arrow-circle-left"></i>Login</a></li> </div>
     </div>
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">&equiv;</button>
+        <h1>AvengeHers</h1>
+        <h1>Events</h1>
+        <div id="logged-in" style="display: none;">
 
-    <h2>Tuesday, March 5</h2>
-    <div class="scrollmenu">
-        <a href="#">Event One</a>
-        <a href="#">Event Two</a>
-        <a href="#">Event Three</a>
-        <a href="#">Event Four</a>
+        </div>
+        <div id="logged-out" style="display: block;">
+            <h2>Sign in to view events</h2>
+        </div>
     </div>
-</div>
-
-<script>
+    <script>
     function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
@@ -108,31 +104,84 @@
 
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
+        document.getElementById("main").style.marginLeft = "0";
     }
-</script>
 
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    function loadGroups(groups) {
+        groups.groups.sort((a, b) => a.startTime - b.startTime);
+        if (groups.groups.length != 0) {
+            let currDate = new Date(groups.groups[0].startTime * 1000).toLocaleDateString();
+            let currEventHTML = `<h2>${currDate}</h2><div class = "scrollmenu">`;
+            for (let d of groups.groups) {
+                if (currDate != new Date(d.startTime * 1000).toLocaleDateString()){
+                    currEventHTML += "</div>";
+                    document.getElementById("logged-in").innerHTML += currEventHTML;
+                    currEventHTML = `<h2>${new Date(d.startTime * 1000).toLocaleDateString()}</h2><div class = "scrollmenu">`;
+                }
+                currEventHTML += `<a href="#">${d.event}</a>`;
+            }
+            currEventHTML += "</div>";
+            document.getElementById("logged-in").innerHTML += currEventHTML;
+        } else {
+            document.getElementById("logged-in").innerHTML = `<h2> No Events Yet! </h2>`;
+        }
+
+    }
+    
+    let groups;
+    window.onload = () => {
+        if (getCookie("logged-in") == "true") {
+            let formData = new FormData();
+            let request = new XMLHttpRequest();
+            if (getCookie("username") != undefined && getCookie("auth") != undefined)
+                formData.set("authCode", getCookie("auth"));
+            formData.set("email", getCookie("username"));
+            request.open('POST', 'events.html', false);
+            request.onload = () => {
+                if (request.readyState === request.DONE) {
+                    if (request.status === 200) {
+                        groups = JSON.parse(request.responseText);
+                        loadGroups(groups);
+                        document.getElementById("logged-in").style.display = "block";
+                        document.getElementById("loginButton").style.display = "none";
+                        document.getElementById("logged-out").style.display = "none";
+                        document.getElementById("logoutButton").style.display = "block";
+                    } else {
+                        document.cookie = "logged-in=false;";
+                    }
+                }
+            }
+            request.send(new URLSearchParams(formData).toString())
+        }
+    }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        div.scrollmenu {
-            background-color: #333;
-            overflow: auto;
-            white-space: nowrap;
-        }
+    div.scrollmenu {
+        background-color: #333;
+        overflow: auto;
+        white-space: nowrap;
+    }
 
-        div.scrollmenu a {
-            display: inline-block;
-            color: white;
-            text-align: center;
-            padding: 14px;
-            text-decoration: none;
-        }
+    div.scrollmenu a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
 
-        div.scrollmenu a:hover {
-            background-color: #777;
-        }
+    div.scrollmenu a:hover {
+        background-color: #777;
+    }
     </style>
-</head>
+    </head>
 </body>
+
 </html>
