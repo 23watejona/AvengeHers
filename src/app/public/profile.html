@@ -4,8 +4,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        body {
+            height: 100vh;
+            background-image: linear-gradient(to bottom, #CEB888, #C28E0E);
+        }
         .checked {
-            color: orange;
+            color: white;
         }
 
         img {
@@ -90,9 +94,11 @@
         <div id="logoutButton" style="display: none;"><li><a href="logout.html"><i class="fas fa-arrow-circle-right"></i>Logout</a></li></div>
         <div id="loginButton" style="display: block;"><li><a href="login.html"><i class="fas fa-arrow-circle-left"></i>Login</a></li> </div>
     </div>
+
 <div id="main">
     <button class="openbtn" onclick="openNav()">&equiv;</button>
-    <h1>Profile</h1>
+    <h1 >Profile</h1>
+    <div id = "logged-in" style="display:none;">
     <h2>Rating: </h2>
 
     <div id="innerstar">
@@ -106,7 +112,7 @@
     <p2><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p2>
     <br>
     <br>
-    <p4><b>Number of Walks:</b></p4>
+    <p4 id="walks"><b>Number of Walks:</b></p4>
     <br>
     <br>
     <p5><b>Account Information:</b></p5>
@@ -115,7 +121,10 @@
     <p6><b>Email:</b> name@collegeuni.edu</p6>
     <br>
     <br>
-    <a href="#"><i class="fas fa-edit"></i>Edit Account Information</a><br>
+</div>
+<div id = "logged-out" style="display:block;">
+    <h2>Login to view Profile</h2>
+</div>
 </div>
 
 <script>
@@ -139,18 +148,10 @@
         let walks = walkStats.numWalks;
         let rating = walkStats.rating;
 
-        //TESTING
-        rating = 3;
-        console.log("got here");
-
-        var ratingLabel = document.getElementById("starRating");
-        ratingLabel.innerHTML = "Rating: " + rating;
-        document.getElementById('starRating').style.fontWeight = "bold";
+        console.log(rating);
 
         for (let x = 0; x < Math.floor(rating); x++) { 
-            console.log("got here");
             document.getElementById('innerstar').innerHTML += `<span class="fa fa-star checked">` + `</span>`;
-            document.getElementById('innerstar').innerHTML += `<p1>the</p1>`;
         }
         for (let x = Math.floor(rating); x < 5; x++) {
             document.getElementById('innerstar').innerHTML += `<span class="fa fa-star">` + `</span>`; 
@@ -175,12 +176,12 @@
             request.onload = () => {
                 if (request.readyState === request.DONE) {
                     if (request.status === 200) {
-                       stats = JSON.parse(request.responseText);
-                       loadStats(stats);
-                       console.log("got here");
-                       document.getElementById("logged-in").style.display = "block";
-                       document.getElementById("logged-out").style.display = "none";
-                       document.getElementById("loginButton").style.display = "none";
+                        stats = JSON.parse(request.responseText);
+                        loadStats(stats);
+                        console.log("got here");
+                        document.getElementById("logged-in").style.display = "block";
+                        document.getElementById("logged-out").style.display = "none";
+                        document.getElementById("loginButton").style.display = "none";
                         document.getElementById("logoutButton").style.display = "block";
                     } else {
                         document.cookie = "logged-in=false;";
