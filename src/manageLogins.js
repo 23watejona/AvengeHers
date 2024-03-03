@@ -71,9 +71,9 @@ export function checkAuth(email, authHash) {
 	return false;
 }
 
-export function addLogin(email, hashedPassword, uid) {
-	logins.users.push(new UserData(email, hashedPassword, uid));
-	publicData.users.push(new PublicUserData(email, uid));
+export function addLogin(name, email, hashedPassword, uid) {
+	logins.users.push(new UserData(name, email, hashedPassword, uid));
+	publicData.users.push(new PublicUserData(name, email, uid));
 	fs.writeFileSync('src/app/app-data/public-data.json', JSON.stringify(publicData));
 	fs.writeFileSync('src/app/app-data/logins.json', JSON.stringify(logins));
 }

@@ -4,7 +4,7 @@ import manageLogins from './manageLogins.js';
 import hash from './hash.js';
 import generateRandomString from './randomString.js';
 
-function createUser(email, hashedPassword) {
+function createUser(name, email, hashedPassword) {
 	let uid = generateRandomString(16);
 	if(manageLogins.getUserByEmail(email) != undefined) {
 		throw new Error("Email exists");
@@ -12,7 +12,7 @@ function createUser(email, hashedPassword) {
 	while(manageLogins.getUserByEmail(email) != undefined) {
 		uid = generateRandomString(16);
 	}
-	manageLogins.addLogin(email, hashedPassword, uid);
+	manageLogins.addLogin(name, email, hashedPassword, uid);
 }
 
 export function createPageHandler(req, res) {
@@ -24,7 +24,7 @@ export function createPageHandler(req, res) {
 		data = qs.parse(data);
 		data.password = hash(data.password);
 		try{
-			createUser(data.email, data.password);
+			createUser(data.name, data.email, data.password);
 		} catch (e) {
 			res.end(e.message);
 			return;

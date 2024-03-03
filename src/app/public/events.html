@@ -124,7 +124,7 @@
                     document.getElementById("logged-in").innerHTML += currEventHTML;
                     currEventHTML = `<h2>${new Date(d.startTime * 1000).toLocaleDateString()}</h2><div class = "scrollmenu">`;
                 }
-                currEventHTML += `<a href="#">${d.event}</a>`;
+                currEventHTML += `<a href="eventInfo.html?event=${d.event}">${d.event}</a>`;
             }
             currEventHTML += "</div>";
             document.getElementById("logged-in").innerHTML += currEventHTML;

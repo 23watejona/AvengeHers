@@ -24,10 +24,6 @@
             font-family: "Lato", sans-serif;
         }
 
-        .vertSpace {
-            margin-bottom:20px;
-        }
-
         .sidebar {
             height: 100%;
             width: 0;
@@ -101,29 +97,34 @@
 
 <div id="main">
     <button class="openbtn" onclick="openNav()">&equiv;</button>
-    <h1>Profile</h1>
-
+    <h1 >Profile</h1>
+    <div id = "logged-in" style="display:none;">
     <h2>Rating: </h2>
-
-    
-
-    <img src="womanIcon.png" alt="icon image" width="150" style="float:left"></br>
-    <p1 class="vertSpace"><b>Jane Doe</b></p1><br>
-    <p2 style="margin-bottom:1cm"><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p2></br>
-    <p3 id="starRating"></p3><br>
 
     <div id="innerstar">
 
     </div>
 
-    <p4 style="margin-bottom:1cm"><b>Number of Walks:</b></p4><br>
-    <p5 style="margin-bottom:1cm"><b>Account Information:</b></p5></br>
-
-    <p12></p12></br>
-    <p13><b>Email:</b> name@collegeuni.edu</p13><br>
-    <p13></p13></br>
-    <p14></p14></br>
-    <a href="#"><i class="fas fa-edit"></i>Edit Account Information</a><br>
+    <img src="womanIcon.png" alt="icon image" width="150" style="float:left"></br>
+    <p1><b>Jane Doe</b></p1>
+    <br>
+    <br>
+    <p2><b>Bio:</b> This is just filler text for this person in order to learn more about the person you are going on a walk with. Filler text filler text filler text fille</p2>
+    <br>
+    <br>
+    <p4 id="walks"><b>Number of Walks:</b></p4>
+    <br>
+    <br>
+    <p5><b>Account Information:</b></p5>
+    <br>
+    <br>
+    <p6><b>Email:</b> name@collegeuni.edu</p6>
+    <br>
+    <br>
+</div>
+<div id = "logged-out" style="display:block;">
+    <h2>Login to view Profile</h2>
+</div>
 </div>
 
 <script>
@@ -147,18 +148,10 @@
         let walks = walkStats.numWalks;
         let rating = walkStats.rating;
 
-        //TESTING
-        rating = 3;
-        console.log("got here");
-
-        var ratingLabel = document.getElementById("starRating");
-        ratingLabel.innerHTML = "Rating: " + rating;
-        document.getElementById('starRating').style.fontWeight = "bold";
+        console.log(rating);
 
         for (let x = 0; x < Math.floor(rating); x++) { 
-            console.log("got here");
             document.getElementById('innerstar').innerHTML += `<span class="fa fa-star checked">` + `</span>`;
-            document.getElementById('innerstar').innerHTML += `<p1>the</p1>`;
         }
         for (let x = Math.floor(rating); x < 5; x++) {
             document.getElementById('innerstar').innerHTML += `<span class="fa fa-star">` + `</span>`; 
@@ -183,12 +176,12 @@
             request.onload = () => {
                 if (request.readyState === request.DONE) {
                     if (request.status === 200) {
-                       stats = JSON.parse(request.responseText);
-                       loadStats(stats);
-                       console.log("got here");
-                       document.getElementById("logged-in").style.display = "block";
-                       document.getElementById("logged-out").style.display = "none";
-                       document.getElementById("loginButton").style.display = "none";
+                        stats = JSON.parse(request.responseText);
+                        loadStats(stats);
+                        console.log("got here");
+                        document.getElementById("logged-in").style.display = "block";
+                        document.getElementById("logged-out").style.display = "none";
+                        document.getElementById("loginButton").style.display = "none";
                         document.getElementById("logoutButton").style.display = "block";
                     } else {
                         document.cookie = "logged-in=false;";
