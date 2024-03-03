@@ -1,6 +1,7 @@
 export default class userData {
 
-	constructor(email, hashedPassword, userId) {
+	constructor(name, email, hashedPassword, userId) {
+		this.name = name;
 		this.email = email;
 		this.hashedPassword = hashedPassword;
 		this.confirmedEmail = false;

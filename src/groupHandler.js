@@ -23,6 +23,31 @@ export function groupPageHandler(req, res) {
     })
 }
 
+export function eventInfoHandler(req, res) {
+    let data = '';
+    req.on('data', (d) => {
+        data += d.toString();
+    })
+    req.on('end', () => {
+        data = qs.parse(data);
+        data.authCode = hash(data.authCode);
+        if (manageLogins.checkAuth(data.email, data.authCode)) {
+            res.status(200);
+            let groups = groupManager.getGroups();
+            for(let group of groups.groups) {
+                if(group.event == data.event) {
+                    res.end(JSON.stringify(group));
+                    return;
+                }
+            }
+            res.end(JSON.stringify({}));
+        } else {
+            res.status(403);
+            res.end("Invalid");
+        }
+    })
+}
+
 export function createGroupPageHandler(req, res) {
     let data = '';
     req.on('data', (d) => {
@@ -38,6 +63,43 @@ export function createGroupPageHandler(req, res) {
             */
             let groups = groupManager.getGroups();
             res.end(JSON.stringify(groups));
+        } else {
+            res.status(403);
+            res.end("Invalid");
+        }
+    })
+}
+
+export function registerForGroupPageHandler(req, res) {
+    let data = '';
+    req.on('data', (d) => {
+        data += d.toString();
+    })
+    req.on('end', () => {
+        data = qs.parse(data);
+        data.authCode = hash(data.authCode);
+        if (manageLogins.checkAuth(data.email, data.authCode)) {
+            res.status(200);
+            groupManager.addToGroup(data.event, manageLogins.getUserByEmail(data.email).uid);
+            res.end("Success");
+        } else {
+            res.status(403);
+            res.end("Invalid");
+        }
+    })
+}
+export function leaveGroupPageHandler(req, res) {
+    let data = '';
+    req.on('data', (d) => {
+        data += d.toString();
+    })
+    req.on('end', () => {
+        data = qs.parse(data);
+        data.authCode = hash(data.authCode);
+        if (manageLogins.checkAuth(data.email, data.authCode)) {
+            res.status(200);
+            groupManager.leaveGroup(data.event, manageLogins.getUserByEmail(data.email));
+            res.end("Success");
         } else {
             res.status(403);
             res.end("Invalid");
