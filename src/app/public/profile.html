@@ -85,7 +85,6 @@
 </head>
 <body>
 <div id="mySidebar" class="sidebar">
-
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9746;</a>
         <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="events.html"><i class="fas fa-calendar-week"></i> Events</a></li>
@@ -106,7 +105,7 @@
     </div>
 
     <img src="womanIcon.png" alt="icon image" width="150" style="float:left"></br>
-    <p1><b>Jane Doe</b></p1>
+    <p1 id = "name"></p1>
     <br>
     <br>
     <p2><b>Bio:</b> This is just filler text</p2>
@@ -170,7 +169,8 @@
         emailLabel.innerHTML = "Email: " + walkStats.email;
         document.getElementById('email').style.fontWeight = "bold";
 
-        
+        document.getElementById("name").innerHTML = walkStats.name;
+        document.getElementById("name").style.fontWeight = "bold";
         // IDKKKK
         let groups;
         let request2 = new XMLHttpRequest();

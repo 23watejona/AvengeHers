@@ -10,15 +10,10 @@ function createUser(name, email, hashedPassword) {
 	if(manageLogins.getUserByEmail(email) != undefined) {
 		throw new Error("Email exists");
 	}
-	while(manageLogins.getUserByEmail(email) != undefined) {
+	while(manageLogins.getUserByEmail(email).uid == uid) {
 		uid = generateRandomString(16);
-		manageLogins.addLogin(email, hashedPassword, uid);
+		manageLogins.addLogin(name, email, hashedPassword, uid);
 	}
-<<<<<<< Updated upstream
-	manageLogins.addLogin(name, email, hashedPassword, uid);
-=======
-	
->>>>>>> Stashed changes
 }
 
 export function createPageHandler(req, res) {
