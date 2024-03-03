@@ -12,13 +12,8 @@ function createUser(name, email, hashedPassword) {
 	}
 	while(manageLogins.getUserByEmail(email) != undefined) {
 		uid = generateRandomString(16);
-		manageLogins.addLogin(email, hashedPassword, uid);
+		manageLogins.addLogin(name, email, hashedPassword, uid);
 	}
-<<<<<<< Updated upstream
-	manageLogins.addLogin(name, email, hashedPassword, uid);
-=======
-	
->>>>>>> Stashed changes
 }
 
 export function createPageHandler(req, res) {
