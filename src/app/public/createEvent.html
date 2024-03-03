@@ -3,35 +3,48 @@
 <body>
 
 <h1>Add Your Event</h1>
-<input type="text" id="myInput" />
-<script>
-const input = document.getElementById("myInput");
-const inputValue = input.value;
-console.log(inputValue);
-</script>
-<form action="/action_page.php">
-    <label for="img">Event Image:</label>
-    <input type="file" id="img" name="img"/><br><br>
-    <label for="name">Event Name:</label>
-    <input type="text" id="name" name="name"><br><br>
-    <label for="loc">Event Location:</label>
-    <input type="text" id="loc" name="loc"><br><br>
-    <label for="date">Event Date:</label>
-    <input type="text" id="date" name="date"><br><br>
-    <label for="stime">Start Time:</label>
-    <input type="text" id="stime" name="stime"><br><br>
-    <label for="etime">End Time:</label>
-    <input type="text" id="etime" name="etime"><br><br>
 
-    <input type="submit" value="Add Your Event">
+<form id = "form" action="javascript:void(0);">
+    <label for="eventName">Event Name:</label>
+    <input type="text" id="eventName" name="eventName" required><br>
+    <label for="location">Start Location:</label>
+    <input type="text" id="startLocation" name="startLocation" required><br>
+    <label for="eventLocation">Event Location:</label>
+    <input type="text" id="eventLocation" name="eventLocation" required><br>
+    <label for="date">Event Date:</label>
+    <input type="date" id="date" name="date" required><br>
+    <label for="startTime">Start Time:</label>
+    <input type="time" id="startTime" name="startTime" required><br>
+    <label for="etime">End Time:</label>
+    <input type="time" id="endTime" name="endTime" required><br>
+    <input type="submit">
 </form>
 
 <script>
-    function createEvent() {
-        let evnImg = document.getElementById("img").value;
-        let evnName = document.getElementById("name").value;
-        document.getElementById("evnName").event.html = "<b>"+evnName+"<\/b>";
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
     }
-</script>-->
+    let form = document.getElementById("form")
+    form.onsubmit = dataSubmit;
+   function dataSubmit() {
+    if (getCookie("username") != undefined && getCookie("auth") != undefined) {
+        let formData = new FormData(form);
+        formData.set("authCode", getCookie("auth"));
+        formData.set("email", getCookie("username"));
+        let request = new XMLHttpRequest();
+        request.open('POST', 'createEvent.html', false);
+        request.onload = () => {
+            if (request.readyState === request.DONE) {
+                if (request.status === 200) {
+                    console.log(request.response);
+                }
+            }
+        }
+        request.send(new URLSearchParams(formData).toString())
+    }
+}
+</script>
 </body>
 </html>

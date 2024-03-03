@@ -5,32 +5,12 @@ export default class group {
 	// Times are stored in epoch time
 
 	// Receive time in Date Format
-	constructor(event, start, destination, startTime, duration) {
+	constructor(event, startLocation, eventLocation, date, startTime, endTime) {
 		this.event = event;
-		this.start = start;
-		this.destination = destination;
-		this.startTime = Date.parse(startTime);
+		this.startLocation = startLocation;
+		this.eventLocation = eventLocation;
+		this.startTime = Math.floor(new Date(date + " " + startTime).getTime() / 1000);
+		this.endTime = Math.floor(new Date(date + " " + endTime).getTime() / 1000);
 		this.users = [];
-	}
-
-	appendUser(userid) {
-		this.users.push(userid);
-	}
-
-	removeUser(userid) {
-		let index = users.indexOf(userid);
-		if (index != 1) {
-			users.splice(index, 1);
-		}
-	}
-
-	// Close walk, returns true if done, false if not done
-	endWalk() {
-		let now = moment();
-		let startTime = Date.parse(this.startTime);
-		if (now > startTime) {
-			return true;
-		}
-		return false;
 	}
 }

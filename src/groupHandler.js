@@ -57,12 +57,14 @@ export function createGroupPageHandler(req, res) {
         data = qs.parse(data);
         data.authCode = hash(data.authCode);
         if (manageLogins.checkAuth(data.email, data.authCode)) {
-            res.status(200);
-            /*
-                ADD GROUP USING GROUP MANAGER
-            */
-            let groups = groupManager.getGroups();
-            res.end(JSON.stringify(groups));
+            if(groupManager.createGroup(data.eventName, data.startLocation, data.eventLocation, data.date, data.startTime, data.endTime)) {
+                res.status(200);
+                res.end("Success");
+            } else {
+                res.status(400);
+                res.end("Event exists");
+            }
+            
         } else {
             res.status(403);
             res.end("Invalid");

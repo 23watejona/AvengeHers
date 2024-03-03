@@ -120,7 +120,11 @@
         document.getElementById("logged-in").innerHTML += `
             <h2>Name: ${group.event}</h2>
             <h2>Date: ${(new Date(group.startTime * 1000)).toLocaleDateString()}</h2>
+            <h2>Start Location: ${group.startLocation}</h2>
+            <h2>Event Location: ${group.startLocation}</h2>
             <h2>Start Time: ${(new Date(group.startTime * 1000)).toLocaleTimeString()}</h2>
+            <h2>End Time: ${(new Date(group.endTime * 1000)).toLocaleTimeString()}</h2>
+            <h2>Group Size: ${group.users.length}</h2>
             <div class="scrollmenu"><a class = "scrollmenu" href="registerForEvent.html?event=${group.event}">Register</a></div>
         `;
 
