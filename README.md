@@ -42,3 +42,11 @@ We learned a lot about working together on a full and complete web application. 
 
 ## What's next for AvengeHers Walkshare
 In terms of our application, we are planning to implement a portion to our app where individuals can find other people walking similar routes as them even if there is no specific event happening. For example, if someone was out late studying, they could find someone who is walking back in a similar direction as them so they won't need to walk back alone late at night. Additionally, we also hope to make the software publically available and easily customizable to be hosted by individuals at different universities on Raspberry PIs.
+
+## Images
+![plot](images/Home%20Page.png)
+![plot](./images/Create%20Account%20Page.png)
+![plot](images/Login%20Page.png)
+![plot](images/Event-InnovateHer.png)
+![plot](./images/Event%20Info%20Page.png)
+![plot](images/Profile%20Page.png)
